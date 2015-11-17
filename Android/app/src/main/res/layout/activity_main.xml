@@ -84,15 +84,14 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:scaleType="fitXY"
-        android:layout_toEndOf="@+id/textView"
+        android:layout_toEndOf="@+id/button3"
         android:src="@drawable/option"
         android:layout_alignBottom="@+id/textView"
-        android:layout_alignParentEnd="false"
-        android:layout_toRightOf="@+id/textView" />
+        android:layout_alignParentEnd="false" />
 
     <ImageButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="20dp"
+        android:layout_height="30dp"
         android:text="Connect To ChromeCast"
         android:id="@+id/button7"
         android:background="@null"
@@ -100,9 +99,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
         android:scaleType="fitXY"
-        android:layout_toStartOf="@+id/textView"
+        android:layout_toStartOf="@+id/button2"
         android:src="@drawable/chromecastconnect"
         android:layout_alignBottom="@+id/button6"
-        android:layout_toLeftOf="@+id/textView" />
+        android:layout_toLeftOf="@+id/button2" />
 
 </RelativeLayout>

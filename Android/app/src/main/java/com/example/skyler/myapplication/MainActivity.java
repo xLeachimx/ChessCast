@@ -10,12 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ChessCast extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chess_cast);
+        setContentView(R.layout.activity_main);
     }
 
 
@@ -27,3 +27,4 @@ public class ChessCast extends AppCompatActivity {
 
 
 }
+
