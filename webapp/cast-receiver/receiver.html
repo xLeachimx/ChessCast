@@ -23,6 +23,29 @@ It is useful for learning the basic concepts of the system.
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
   <script src="assets/Snap.svg-0.4.1/dist/snap.svg-min.js"> </script>
 
+  <style> 
+    @font-face {
+      font-family: Timber;
+      url('assets/font/Timber.ttf');
+    }
+
+    @font-face {
+      font-family: Moderne Sans;
+      url('assets/font/MODERNE SANS.ttf');
+    }
+
+    @font-face {
+      font-family: Fonarto;
+      url(assets/font/Fonarto XT.otf);
+    }
+
+    @font-face {
+      font-family: Axis;
+      url(assets/font/axis.otf);
+    }
+
+  </style>
+
   <!-- <script src="snap.js"> </script> --> 
     <title>Chess Cast</title>
     <meta charset="utf-8" />
@@ -38,48 +61,70 @@ It is useful for learning the basic concepts of the system.
 
       var s = Snap("#svg");
 
-      var g = s.group();
+      var blackBank = s.group();
+      var whiteBank = s.group();
 
-      //Image aligns when set to resolution of actual design, desired tvs
+
+      // Titles for player names 
+      var player1 = s.text(35,100,'Player 1');
+      player1.attr({
+        fill: "#fff",
+        "font-size": "100px",
+        "font-family": "Axis, Droid Sans, serif"
+      });
+
+      var player2 = s.text(1475,100,'Player 2');
+      player2.attr({
+        fill: "#fff",
+        "font-size": "100px",
+        "font-family": "Axis, Droid Sans, serif"
+      });
+
+      //Image aligns when set to resolution of actual design, desired TV's
       s.attr ({ viewBox: "0 0 1920 1080"});
   
-      // Load stand in first
+      // Load stand in 
       var stand = Snap.load("assets/svg/ui/stand-only.svg", function(f) {
         s.append(f);
       } );
 
-      // Load board in second, on top of stand
+      // Load board in, on top of stand
       var board = Snap.load("assets/svg/ui/board-only-full.svg", function(f) {
         s.append(f);
       });
 
-      // Pieces, put into array 
-      var whiteRook = Snap.load("assets/svg/pieces/white.rook.svg", function(f) {
-        //f.transform("t100,0");
-        g.append(f);
-        console.log(f);
-        g.transform("t150,0");
+      //Graveyard piece banks
+      Snap.load("assets/svg/ui/bank.black.svg", function(f){
+        blackBank.append(f);
+        // scale to fit pieces 4x4 
+        blackBank.transform('s0.55t-225,150');
       });
 
-      var blackRook = Snap.load("assets/svg/pieces/black.rook.svg", function(f) {
-        s.append(f);
+      Snap.load("assets/svg/ui/bank.white.svg", function(f){
+        whiteBank.append(f);
+        whiteBank.transform('s0.55t2395,150');
       });
 
-      // Graveyard piece banks
-      // var blackBank = Snap.load("assets/svg/ui/bank.black.svg", function(f){
-      //   banks.append(f);
+      // Grid coords
+      // var letterCoords = s.text(500, 100, "A B C D E F G H");
+      // letterCoords.attr({
+      //   fill: "#fff",
+      //   "font-size": "30px",
+      //   "font-family": "Axis, Droid Sans, serif"
       // });
 
-      // var whiteBank = Snap.load("assets/svg/ui/bank.white.svg", function(f){
-      //   banks.append(f);
+      // Pieces
+      // var whiteRook = Snap.load("assets/svg/pieces/white.rook.svg", function(f) {
+      //   //f.transform("t100,0");
+      //   g.append(f);
+      //   console.log(f);
+      //   g.transform("t150,0");
       // });
 
-      // scale in half, translate 750, 0
-      //whiteBank.transform("s0.5t750, 0");
-      // scale in half
-      //banks.transform("s0.5");
+      // var blackRook = Snap.load("assets/svg/pieces/black.rook.svg", function(f) {
+      //   s.append(f);
+      // });
 
-      // Next: Divide checkboard in to grid, include pieces, animate
     </script>
   </body>
 </html>
