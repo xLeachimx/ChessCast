@@ -98,8 +98,7 @@
         android:mediaRouteTypes="user"
         android:layout_alignTop="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:clickable="true" />
+        android:layout_alignParentStart="true" />
 
 
 

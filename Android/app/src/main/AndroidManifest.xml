@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     package="com.example.skyler.myapplication"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -17,9 +18,6 @@
         android:required="true" >
     </uses-feature>
 
-    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -27,6 +25,7 @@
         android:label="Cast Chess"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar" >
+
         <activity android:name=".ChessCast" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
