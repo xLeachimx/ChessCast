@@ -20,6 +20,12 @@ Bishop.prototype.getValidMoveSet = function(board) {
 	currentY -= 1;
 	currentSpeculation = new Point(currentX, currentY);
     }
+    var cap = board.getPieceAt(currentSpeculation);
+    if(cap){
+	if(cap.isWhite() !== this.white){
+	    result.push(currentSpeculation);
+	}
+    }
     //moving left and up
     currentX = this.x-1;
     currentY = this.y+1;
@@ -29,6 +35,12 @@ Bishop.prototype.getValidMoveSet = function(board) {
 	currentX -= 1;
 	currentY += 1;
 	currentSpeculation = new Point(currentX, currentY);
+    }
+    cap = board.getPieceAt(currentSpeculation);
+    if(cap){
+	if(cap.isWhite() !== this.white){
+	    result.push(currentSpeculation);
+	}
     }
     //moving left and up
     currentX = this.x-1;
@@ -40,6 +52,12 @@ Bishop.prototype.getValidMoveSet = function(board) {
 	currentY -= 1;
 	currentSpeculation = new Point(currentX, currentY);
     }
+    cap = board.getPieceAt(currentSpeculation);
+    if(cap){
+	if(cap.isWhite() !== this.white){
+	    result.push(currentSpeculation);
+	}
+    }
     //moving right and down
     currentX = this.x+1;
     currentY = this.y+1;
@@ -49,6 +67,12 @@ Bishop.prototype.getValidMoveSet = function(board) {
 	currentX += 1;
 	currentY += 1;
 	currentSpeculation = new Point(currentX, currentY);
+    }
+    cap = board.getPieceAt(currentSpeculation);
+    if(cap){
+	if(cap.isWhite() !== this.white){
+	    result.push(currentSpeculation);
+	}
     }
     return result;
 };
