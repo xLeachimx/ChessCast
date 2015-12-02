@@ -27,6 +27,38 @@ Board.prototype.canBeMovedTo = function(from, to){
     if(mover){
 	var moveSet = mover.getValidMoveSet(this);
 	for(var i = 0;i < moveSet;i++){
+	    if(moveSet[i].equal(to)){
+		return true;
+	    }
 	}
     }
+    return false;
+};
+
+//white is a boolean variable which if true means you are looking for
+//check of the white king
+Board.prototype.check = function(white){
+    var king = null
+    for(var i = 0;i < pieces.length;i++){
+	if(pieces[i].isWhite() === white && pieces[i].designation === "King"){
+	    king = pieces[i];
+	    break;
+	}
+    }
+    if(king){
+	for(var i = 0;i < pieces.length;i++){
+	    if(pieces[i].isWhite() !== white){
+		var moveSet = pieces[i].getValidMoveSet(this);
+		for(var j = 0;j < moveSet.length;j++){
+		    if(moveSet[j].equal(king.location)){
+			return true;
+		    }
+		}
+	    }
+	}
+    }
+    return false;
+};
+
+Board.prototype.filterMoveList = function(piece){
 };
