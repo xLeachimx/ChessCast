@@ -47,7 +47,7 @@ Board.prototype.check = function(white){
     }
     if(king){
 	for(var i = 0;i < pieces.length;i++){
-	    if(pieces[i].isWhite() !== white){
+	    if(pieces[i].isWhite() !== white && !pieces.captured){
 		var moveSet = pieces[i].getValidMoveSet(this);
 		for(var j = 0;j < moveSet.length;j++){
 		    if(moveSet[j].equal(king.location)){
@@ -60,5 +60,24 @@ Board.prototype.check = function(white){
     return false;
 };
 
+//filters out all moves that land the (friendly)king in check
 Board.prototype.filterMoveList = function(piece){
+    var color = piece.isWhite();
+    var moveSet = pieces.getValidMoveSet(this);
+    var origin = Point(piece.location.x, piece.location.y);
+    var filteredMoveSet = [];
+    for(var i = 0;i < moveSet.length;i++){
+	piece.moveTo(moveSet[i]);
+	var cap = this.getPieceAt(moveSet[i]);
+	if(cap){
+	    cap.captured = true;
+	}
+	if(!this.check(color)){
+	    filteredMoveSet.push(moveSet[i]);
+	}
+	if(cap){
+	    cap.captured = false;
+	}
+    }
+    return filteredMoveSet;
 };
