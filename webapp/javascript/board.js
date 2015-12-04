@@ -1,5 +1,5 @@
 var Board = function(){
-    this.length = 8;
+    this.width = 8;
     this.height = 8;
     this.pieces = [];
 };
@@ -80,4 +80,15 @@ Board.prototype.filterMoveList = function(piece){
 	}
     }
     return filteredMoveSet;
+};
+
+
+Board.prototype.inBounds = function(loc){
+    if(loc.x < 0 || loc.x > this.width){
+	return false;
+    }
+    if(loc.y < 0 || loc.y > this.height){
+	return false;
+    }
+    return true;
 };
