@@ -1,7 +1,40 @@
+//sets up a standard chessboard
 var Board = function(){
     this.width = 8;
     this.height = 8;
     this.pieces = [];
+    //add pieces in standard format
+    //pawns
+    for(int i = 0;i < 8;i++){
+	this.pieces.push(Pawn(Point(i,2), true)); //init white pawns
+	this.pieces.push(Pawn(Point(i,6), false)); //init black pawns
+    }
+    //white rooks
+    this.pieces.push(Rook(Point(0,0), true));
+    this.pieces.push(Rook(Point(7,0), true));
+    //black rooks
+    this.pieces.push(Rook(Point(0,7), false));
+    this.pieces.push(Rook(Point(7,7), false));
+    //white knights
+    this.pieces.push(Knight(Point(1,0), true));
+    this.pieces.push(Knight(Point(6,0), true));
+    //black knights
+    this.pieces.push(Knight(Point(1,7), false));
+    this.pieces.push(Knight(Point(6,7), false));
+    //white bishops
+    this.pieces.push(Bishop(Point(2,0), true));
+    this.pieces.push(Bishop(Point(5,0), true));
+    //black bishops
+    this.pieces.push(Bishop(Point(2,7), false));
+    this.pieces.push(Bishop(Point(5,7), false));
+    //White Queen
+    this.pieces.push(Queen(Point(3,0), true));
+    //Black Queen
+    this.pieces.push(Queen(Point(3,7), false));
+    //White King
+    this.pieces.push(King(Point(4,0), true));
+    //Black King
+    this.pieces.push(King(Point(4,7), false));
 };
 
 Board.prototype.occupiedSpace = function(loc){

@@ -15,11 +15,15 @@ var Piece = function(location, isWhite) {
     this.moved = false;
     this.pointValue = 0;
     this.name = "piece";
+    this.assest = null;
 };
 
 Piece.prototype.moveTo = function(to) {
     this.location = to;
     this.moved = true;
+    if(asset){
+	//put asset movement code here
+    }
 };
 
 Piece.prototype.isWhite = function() {
