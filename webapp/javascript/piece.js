@@ -15,7 +15,7 @@ var Piece = function(location, isWhite) {
     this.moved = false;
     this.pointValue = 0;
     this.name = "piece";
-    this.assest = null;
+    this.asset = null;
 };
 
 Piece.prototype.moveTo = function(to) {
@@ -23,6 +23,9 @@ Piece.prototype.moveTo = function(to) {
     this.moved = true;
     if(asset){
 	//put asset movement code here
+	var assetX = (this.location.x * 156.5)+831
+	var assetY = (this.location.y * 162)+110
+	asset.transform('0.65T' + String(assetX) + ',' + String(assetY))
     }
 };
 
