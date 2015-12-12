@@ -2,10 +2,11 @@ Pawn.prototype = new Piece(Point(0,0), false);
 
 Pawn.prototype.constructor = Pawn;
 
-function Pawn(location, isWhite){
+function Pawn(location, isWhite, asset){
     this.location = location;
     this.white = isWhite;
     this.name = "Pawn";
+    this.asset = asset;
 };
 
 Pawn.prototype.getValidMoveSet = function(board) {

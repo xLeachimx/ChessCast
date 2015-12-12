@@ -6,7 +6,12 @@ var Board = function(){
     //add pieces in standard format
     //pawns
     for(int i = 0;i < 8;i++){
-	this.pieces.push(Pawn(Point(i,2), true)); //init white pawns
+	Snap.load('white-pawn', function(f) {
+	    var temp = s.group();
+	    this.pieces.push(Pawn(Point(0,0), true),temp); //init white pawns
+	    temp.append(f);
+	    this.pieces.moveTo(Point(i,2));
+	}
 	this.pieces.push(Pawn(Point(i,6), false)); //init black pawns
     }
     //white rooks
