@@ -21,7 +21,11 @@ It is useful for learning the basic concepts of the system.
   <head>
   <!-- <link rel="stylesheet" type="text/css" href="chess.css"/> -->
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
-  <script src="assets/Snap.svg-0.4.1/dist/snap.svg-min.js"> </script>
+  <script src="https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/Snap.svg-0.4.1/dist/snap.svg-min.js"> </script>
+  <!-- cast-receiver folder: 0B4THzRDAkVCGd0FQTUh4S2xHaWc --> 
+  <!-- assets folder: 0B4THzRDAkVCGZUw1dnZDbjJ1ZXc -->
+  <!-- <script type="text/javascript" src="/assets/Snap.svg-0.4.1/dist/snap.svg-min.js"> </script> -->
+  <!--<script type = "text/javascript" src="snapreceiver.js"> </script>-->
 
   <style> 
     @font-face {
@@ -41,12 +45,9 @@ It is useful for learning the basic concepts of the system.
 
     @font-face {
       font-family: Axis;
-      url(assets/font/axis.otf);
+      url(https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/font/axis.otf);
     }
-
   </style>
-
-  <!-- <script src="snap.js"> </script> --> 
     <title>Chess Cast</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -82,13 +83,13 @@ It is useful for learning the basic concepts of the system.
   
       // Load stand in 
       var stand = s.group();
-      Snap.load("assets/svg/ui/stand-only.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/ui/stand-only.svg", function(f) {
         stand.append(f);
       } );
-
+      var board = s.group();
       // Load board in, on top of stand
-      Snap.load("assets/svg/ui/board-only-full.svg", function(f) {
-        stand.append(f);
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/ui/board-only-full.svg", function(f) {
+        board.append(f);
       });
 
       //// Pieces:
@@ -118,60 +119,60 @@ It is useful for learning the basic concepts of the system.
 
       /// Rooks 
       // white: 
-      Snap.load("assets/svg/pieces/white.rook.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/white.rook.svg", function(f) {
         piece.rook.white.p1.append(f);
         piece.rook.white.p1.transform(scale + "t831,110");
       });
-      Snap.load("assets/svg/pieces/white.rook.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/white.rook.svg", function(f) {
         piece.rook.white.p2.append(f);
         piece.rook.white.p2.transform(scale + "t" + (831 + incrx * 7) + ",110");
       });
       // black: 
-      Snap.load("assets/svg/pieces/black.rook.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/black.rook.svg", function(f) {
         piece.rook.black.p1.append(f);
         piece.rook.black.p1.transform(scale + "t831," + (110 + incry * 7));
       });
-      Snap.load("assets/svg/pieces/black.rook.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/black.rook.svg", function(f) {
         piece.rook.black.p2.append(f);
         piece.rook.black.p2.transform(scale + "t" + (831 + incrx * 7) + "," + (110 + incry * 7));
       });
 
       /// Knights
       // white:
-      Snap.load("assets/svg/pieces/white.knight.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/white.knight.svg", function(f) {
         piece.knight.white.p1.append(f);
         piece.knight.white.p1.transform(scale + "t" + (831 + incrx * 1) + ",110");
       });
-      Snap.load("assets/svg/pieces/white.knight.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/white.knight.svg", function(f) {
         piece.knight.white.p2.append(f);
         piece.knight.white.p2.transform(scale + "t" + (831 + incrx * 6) + ",110");
       }); 
       //black: 
-      Snap.load("assets/svg/pieces/black.knight.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/black.knight.svg", function(f) {
         piece.knight.black.p1.append(f);
         piece.knight.black.p1.transform(scale + "t" + (831 + incrx * 1) + "," + (110 + incry * 7) );
       });
-      Snap.load("assets/svg/pieces/black.knight.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/black.knight.svg", function(f) {
         piece.knight.black.p2.append(f);
         piece.knight.black.p2.transform(scale + "t" + (831 + incrx * 6) + "," + (110 + incry * 7) );
       }); 
 
       /// Bishop
       // white:
-      Snap.load("assets/svg/pieces/white.bishop.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/white.bishop.svg", function(f) {
         piece.bishop.white.p1.append(f);
         piece.bishop.white.p1.transform(scale + "t" + (831 + incrx * 2) + ",110");
       }); 
-      Snap.load("assets/svg/pieces/white.bishop.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/white.bishop.svg", function(f) {
         piece.bishop.white.p2.append(f);
         piece.bishop.white.p2.transform(scale + "t" + (831 + incrx * 5) + ",110");
       }); 
       // black:
-      Snap.load("assets/svg/pieces/black.bishop.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/black.bishop.svg", function(f) {
         piece.bishop.black.p1.append(f);
         piece.bishop.black.p1.transform(scale + "t" + (831 + incrx * 2) + "," + (110 + incry * 7));
       }); 
-      Snap.load("assets/svg/pieces/black.bishop.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/black.bishop.svg", function(f) {
         piece.bishop.black.p2.append(f);
         piece.bishop.black.p2.transform(scale + "t" + (831 + incrx * 5) + "," + (110 + incry * 7));
       }); 
@@ -179,13 +180,13 @@ It is useful for learning the basic concepts of the system.
       /// Kings
       // white:
       var whiteKing = s.group();
-      Snap.load("assets/svg/pieces/white.king.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/white.king.svg", function(f) {
         whiteKing.append(f);
         whiteKing.transform(scale + "t" + (831 + incrx * 3) + "," + (110 + incry * 0));
       });  
       //black:
       var blackKing = s.group();
-        Snap.load("assets/svg/pieces/black.king.svg", function(f) {
+        Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/black.king.svg", function(f) {
           blackKing.append(f);
           blackKing.transform(scale + "t" + (831 + incrx * 3) + "," + (110 + incry * 7));
       });  
@@ -193,13 +194,13 @@ It is useful for learning the basic concepts of the system.
       /// Queens
       // white:
       var whiteQueen = s.group();    
-      Snap.load("assets/svg/pieces/white.queen.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/white.queen.svg", function(f) {
         whiteQueen.append(f);
         whiteQueen.transform(scale + "t" + (831 + incrx * 4) + "," + (110 + incry * 0));
       });
       // black:
       var blackQueen = s.group();    
-      Snap.load("assets/svg/pieces/black.queen.svg", function(f) {
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/black.queen.svg", function(f) {
         blackQueen.append(f);
         blackQueen.transform(scale + "t" + (831 + incrx * 4) + "," + (110 + incry * 7));
       });
@@ -237,7 +238,7 @@ It is useful for learning the basic concepts of the system.
         var scale = "s0.65";
         var incrx = 156.5;
         var incry = 163;
-        Snap.load("assets/svg/pieces/" + color + ".pawn.svg", function(f) {
+        Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/pieces/" + color + ".pawn.svg", function(f) {
           coords.append(f);
           // Set # to multiply by incr: 
           if (color == "white") {
@@ -257,18 +258,18 @@ It is useful for learning the basic concepts of the system.
 
       //Graveyard piece banks
       var blackBank = s.group();
-      Snap.load("assets/svg/ui/bank.black.svg", function(f){
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/ui/bank.black.svg", function(f){
         blackBank.append(f);
         // scale to fit pieces 4x4 
         blackBank.transform('s0.55t-225,150');
       });
 
       var whiteBank = s.group();
-      Snap.load("assets/svg/ui/bank.white.svg", function(f){
+      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/ui/bank.white.svg", function(f){
         whiteBank.append(f);
         whiteBank.transform('s0.55t2395,150');
       });
 
-    </script>
+   </script>
   </body>
 </html>
