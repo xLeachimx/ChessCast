@@ -1,0 +1,21 @@
+def loadFile(filename)
+  fin = File.open(filename,'r')
+  contents = fin.read
+  fin.close
+  return contents
+end
+
+def saveFile(filename, contents)
+  fout = File.open(filename, 'w')
+  fout.puts contents
+  fout.close
+end
+
+contents = ''
+Dir.entries('./').each do |name|
+  if(File.extname(name) == '.js')
+    contents += "\n" + loadFile(name)
+  end
+end
+
+saveFile('piece_library.js', contents)
