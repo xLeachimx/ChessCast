@@ -7,9 +7,9 @@ Point.prototype.equal = function(to) {
   return ((this.x === to.x) && (this.y === to.y));
 };
 
-var Piece = function(location, isWhite, assetName) {
+var Piece = function(location, white, assetName) {
   this.location = location;
-  this.white = isWhite;
+  this.white = white;
   this.captured = false;
   this.moved = false;
   this.pointValue = 0;

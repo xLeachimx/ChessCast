@@ -8,8 +8,8 @@ King.prototype.constructor = King;
 
 King.prototype.getValidMoveSet = function(board) {
   var result = [];
-  var currentX = this.x+1;
-  var currentY = this.y;
+  var currentX = this.location.x+1;
+  var currentY = this.location.y;
   var currentSpeculation = new Point(currentX,currentY);
   //right
   if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
@@ -21,7 +21,7 @@ King.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.x-1;
+  currentX = this.location.x-1;
   currentY = this.y;
   currentSpeculation = new Point(currentX, currentY);
   //left
@@ -34,8 +34,8 @@ King.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.x;
-  currentY = this.y-1;
+  currentX = this.location.x;
+  currentY = this.y-1.location;
   currentSpeculation = new Point(currentX, currentY);
   //up
   if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
@@ -47,8 +47,8 @@ King.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.x;
-  currentY = this.y+1;
+  currentX = this.location.x;
+  currentY = this.y+1.location;
   currentSpeculation = new Point(currentX, currentY);
   //down
   if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
@@ -60,15 +60,15 @@ King.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.x+1;
-  currentY = this.y-1;
+  currentX = this.location.x+1;
+  currentY = this.y-1.location;
   currentSpeculation = new Point(currentX, currentY);
   //right and up
   if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
     result.push(currentSpeculation);
   }
-  currentX = this.x-1;
-  currentY = this.y-1;
+  currentX = this.location.x-1;
+  currentY = this.y-1.location;
   currentSpeculation = new Point(currentX, currentY);
   //left and up
   if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
@@ -80,8 +80,8 @@ King.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.x+1;
-  currentY = this.y-1;
+  currentX = this.location.x+1;
+  currentY = this.y-1.location;
   currentSpeculation = new Point(currentX, currentY);
   //right and down
   if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
@@ -93,8 +93,8 @@ King.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.x-1;
-  currentY = this.y+1;
+  currentX = this.location.x-1;
+  currentY = this.y+1.location;
   currentSpeculation = new Point(currentX, currentY);
   //left and down
   if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
