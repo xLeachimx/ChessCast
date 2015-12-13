@@ -7,14 +7,24 @@ Point.prototype.equal = function(to) {
   return ((this.x === to.x) && (this.y === to.y));
 };
 
-var Piece = function(location, isWhite, asset) {
+var Piece = function(location, isWhite, assetName) {
   this.location = location;
   this.white = isWhite;
   this.captured = false;
   this.moved = false;
   this.pointValue = 0;
   this.name = "piece";
-  this.asset = asset;
+  if(assetName){
+    this.asset = s.group();
+    Snap.load(assetName, function(f){
+      this.asset.append(f);
+      this.moveTo(location);
+    });
+  }
+  else{
+    this.asset = null;
+  }
+  this.moveTo(location);
 };
 
 Piece.prototype.moveTo = function(to) {
@@ -54,8 +64,8 @@ Piece.prototype.getValidMoveSet = function(board) {
   return [];
 };
 
-function Rook(location, isWhite, asset){
-  Piece.call(this, location, isWhite, asset);
+function Rook(location, isWhite, assetName){
+  Piece.call(this, location, isWhite, assetName);
   this.name = "Rook";
 }
 
@@ -127,8 +137,8 @@ Rook.prototype.getValidMoveSet = function(board) {
   return result;
 };
 
-function Pawn(location, isWhite, asset){
-    Piece.call(this, location, isWhite, asset);
+function Pawn(location, isWhite, assetName){
+    Piece.call(this, location, isWhite, assetName);
     this.name = "Pawn";
 }
 
@@ -150,8 +160,8 @@ Pawn.prototype.getValidMoveSet = function(board) {
   return result;
 };
 
-function Bishop(location, isWhite, asset){
-  Piece.call(this, location, isWhite, asset);
+function Bishop(location, isWhite, assetName){
+  Piece.call(this, location, isWhite, assetName);
   this.name = "Bishop";
 }
 
@@ -227,8 +237,8 @@ Bishop.prototype.getValidMoveSet = function(board) {
   return result;
 };
 
-function Knight(location, isWhite, asset){
-    Piece.call(this, location, isWhite, asset);
+function Knight(location, isWhite, assetName){
+    Piece.call(this, location, isWhite, assetName);
     this.name = "Knight";
 }
 
@@ -339,8 +349,8 @@ Knight.prototype.getValidMoveSet = function(board) {
   return result;
 };
 
-function Queen(location, isWhite, asset){
-  Piece.call(this, location, isWhite, asset);
+function Queen(location, isWhite, assetName){
+  Piece.call(this, location, isWhite, assetName);
   this.name = "Queen";
 }
 
@@ -478,8 +488,8 @@ Queen.prototype.getValidMoveSet = function(board) {
   return result;
 };
 
-function King(location, isWhite, asset){
-  Piece.call(this, location, isWhite, asset);
+function King(location, isWhite, assetName){
+  Piece.call(this, location, isWhite, assetName);
   this.name = "King";
 }
 
@@ -597,36 +607,36 @@ var Board = function(){
   //add pieces in standard format
   //pawns
   for(var i = 0; i < 8; i++) {
-    Snap.load('assets/svg/pieces/white.pawn.svg', function(f) {
-      var temp = s.group();
-      temp.append(f);
-      this.pieces.push(new Pawn(new Point(0,0), true ,temp)); //init white pawns
-      this.pieces.moveTo(new Point(i,2));
-    });
-    this.pieces.push(new Pawn(new Point(i,6), false, null)); //init black pawns
+    this.pieces.push(new Pawn(new Point(i,0), true, 'assets/svg/pieces/white.pawn.svg')); //init white pawns
+    this.pieces.push(new Pawn(new Point(i,6), false, 'assets/svg/pieces/black.pawn.svg')); //init black pawns
   }
+
   //white rooks
   this.pieces.push(new Rook(new Point(0,0), true, null));
   this.pieces.push(new Rook(new Point(7,0), true, null));
   //black rooks
   this.pieces.push(new Rook(new Point(0,7), false, null));
   this.pieces.push(new Rook(new Point(7,7), false, null));
+  
   //white knights
   this.pieces.push(new Knight(new Point(1,0), true, null));
   this.pieces.push(new Knight(new Point(6,0), true, null));
   //black knights
   this.pieces.push(new Knight(new Point(1,7), false, null));
   this.pieces.push(new Knight(new Point(6,7), false, null));
+  
   //white bishops
   this.pieces.push(new Bishop(new Point(2,0), true, null));
   this.pieces.push(new Bishop(new Point(5,0), true, null));
   //black bishops
   this.pieces.push(new Bishop(new Point(2,7), false, null));
   this.pieces.push(new Bishop(new Point(5,7), false, null));
+  
   //White Queen
   this.pieces.push(new Queen(new Point(3,0), true, null));
   //Black Queen
   this.pieces.push(new Queen(new Point(3,7), false, null));
+  
   //White King
   this.pieces.push(new King(new Point(4,0), true, null));
   //Black King

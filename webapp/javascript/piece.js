@@ -7,14 +7,24 @@ Point.prototype.equal = function(to) {
   return ((this.x === to.x) && (this.y === to.y));
 };
 
-var Piece = function(location, isWhite, asset) {
+var Piece = function(location, isWhite, assetName) {
   this.location = location;
   this.white = isWhite;
   this.captured = false;
   this.moved = false;
   this.pointValue = 0;
   this.name = "piece";
-  this.asset = asset;
+  if(assetName){
+    this.asset = s.group();
+    Snap.load(assetName, function(f){
+      this.asset.append(f);
+      this.moveTo(location);
+    });
+  }
+  else{
+    this.asset = null;
+  }
+  this.moveTo(location);
 };
 
 Piece.prototype.moveTo = function(to) {
