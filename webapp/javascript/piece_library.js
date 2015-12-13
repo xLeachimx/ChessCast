@@ -597,12 +597,12 @@ var Board = function(){
   //add pieces in standard format
   //pawns
   for(var i = 0; i < 8; i++) {
-    Snap.load('white-pawn', function(f) {
+    Snap.load('assets/svg/pieces/white.pawn.svg', function(f) {
       var temp = s.group();
       temp.append(f);
-      this.pieces.push(new Pawn(new Point(0,0), true),temp); //init white pawns
+      this.pieces.push(new Pawn(new Point(0,0), true ,temp)); //init white pawns
       this.pieces.moveTo(new Point(i,2));
-    }
+    });
     this.pieces.push(new Pawn(new Point(i,6), false, null)); //init black pawns
   }
   //white rooks
