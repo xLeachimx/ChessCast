@@ -24,7 +24,7 @@ files = [
         ]
 files.each do |name|
   if(File.extname(name) == '.js')
-    contents += "\n" + loadFile(name)
+    contents += loadFile(name) + "\n"
   end
 end
 
