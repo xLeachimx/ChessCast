@@ -1,5 +1,5 @@
-function Rook(location, isWhite){
-  Piece.call(this, location, isWhite);
+function Rook(location, isWhite, asset){
+  Piece.call(this, location, isWhite, asset);
   this.name = "Rook";
 }
 
