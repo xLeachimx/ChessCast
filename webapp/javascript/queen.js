@@ -1,5 +1,5 @@
-function Queen(location, isWhite, assetName){
-  Piece.call(this, location, isWhite, assetName);
+function Queen(location, isWhite, assetName, space){
+  Piece.call(this, location, isWhite, assetName, space);
   this.name = "Queen";
 }
 

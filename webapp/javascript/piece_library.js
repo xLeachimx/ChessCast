@@ -7,7 +7,7 @@ Point.prototype.equal = function(to) {
   return ((this.x === to.x) && (this.y === to.y));
 };
 
-var Piece = function(location, white, assetName) {
+var Piece = function(location, white, assetName, space) {
   this.location = location;
   this.white = white;
   this.captured = false;
@@ -15,7 +15,7 @@ var Piece = function(location, white, assetName) {
   this.pointValue = 0;
   this.name = "piece";
   if(assetName){
-    this.asset = s.group();
+    this.asset = space.group();
     Snap.load(assetName, function(f){
       this.asset.append(f);
       this.moveTo(location);
@@ -64,8 +64,8 @@ Piece.prototype.getValidMoveSet = function(board) {
   return [];
 };
 
-function Rook(location, isWhite, assetName){
-  Piece.call(this, location, isWhite, assetName);
+function Rook(location, isWhite, assetName, space){
+  Piece.call(this, location, isWhite, assetName, space);
   this.name = "Rook";
 }
 
@@ -137,8 +137,8 @@ Rook.prototype.getValidMoveSet = function(board) {
   return result;
 };
 
-function Pawn(location, isWhite, assetName){
-    Piece.call(this, location, isWhite, assetName);
+function Pawn(location, isWhite, assetName, space){
+    Piece.call(this, location, isWhite, assetName, space);
     this.name = "Pawn";
 }
 
@@ -177,8 +177,8 @@ Pawn.prototype.getValidMoveSet = function(board) {
   return result;
 };
 
-function Bishop(location, isWhite, assetName){
-  Piece.call(this, location, isWhite, assetName);
+function Bishop(location, isWhite, assetName, space){
+  Piece.call(this, location, isWhite, assetName, space);
   this.name = "Bishop";
 }
 
@@ -254,8 +254,8 @@ Bishop.prototype.getValidMoveSet = function(board) {
   return result;
 };
 
-function Knight(location, isWhite, assetName){
-    Piece.call(this, location, isWhite, assetName);
+function Knight(location, isWhite, assetName, space){
+    Piece.call(this, location, isWhite, assetName, space);
     this.name = "Knight";
 }
 
@@ -366,8 +366,8 @@ Knight.prototype.getValidMoveSet = function(board) {
   return result;
 };
 
-function Queen(location, isWhite, assetName){
-  Piece.call(this, location, isWhite, assetName);
+function Queen(location, isWhite, assetName, space){
+  Piece.call(this, location, isWhite, assetName, space);
   this.name = "Queen";
 }
 
@@ -505,8 +505,8 @@ Queen.prototype.getValidMoveSet = function(board) {
   return result;
 };
 
-function King(location, isWhite, assetName){
-  Piece.call(this, location, isWhite, assetName);
+function King(location, isWhite, assetName, space){
+  Piece.call(this, location, isWhite, assetName, space);
   this.name = "King";
 }
 

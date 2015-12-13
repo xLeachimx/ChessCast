@@ -7,7 +7,7 @@ Point.prototype.equal = function(to) {
   return ((this.x === to.x) && (this.y === to.y));
 };
 
-var Piece = function(location, white, assetName) {
+var Piece = function(location, white, assetName, space) {
   this.location = location;
   this.white = white;
   this.captured = false;
@@ -15,7 +15,7 @@ var Piece = function(location, white, assetName) {
   this.pointValue = 0;
   this.name = "piece";
   if(assetName){
-    this.asset = s.group();
+    this.asset = space.group();
     Snap.load(assetName, function(f){
       this.asset.append(f);
       this.moveTo(location);
