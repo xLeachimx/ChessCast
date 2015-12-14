@@ -1,5 +1,5 @@
-function Pawn(location, isWhite, assetName, space){
-    Piece.call(this, location, isWhite, assetName, space);
+function Pawn(loc, isWhite, assetName, space){
+    Piece.call(this, loc, isWhite, assetName, space);
     this.name = "Pawn";
 }
 
@@ -12,25 +12,25 @@ Pawn.prototype.getValidMoveSet = function(board) {
   if(this.white){
     vertAdjust = 1;
   }
-  var possible = new Point(this.location.x,this.location.y+vertAdjust);
-  if (board.inBounds(currentSpeculation) && !board.locationOccupied(possible)){
+  var possible = new Point(this.loc.x,this.loc.y+vertAdjust);
+  if (board.inBounds(currentSpeculation) && !board.locOccupied(possible)){
     result.push(possible);
   }
   if(result.length > 0 && !this.moved){
-    possible = new Point(this.location.x,this.location.y+(2*vertAdjust));
-    if(board.inBounds(currentSpeculation) && !board.locationOccupied(possible)){
+    possible = new Point(this.loc.x,this.loc.y+(2*vertAdjust));
+    if(board.inBounds(currentSpeculation) && !board.locOccupied(possible)){
       result.push(possible);
     }
   }
   //test captures
-  var cap = new Point(this.location.x+1, this.location.y+vertAdjust);
-  if(board.inBounds(cap) && board.locationOccupied(cap)){
+  var cap = new Point(this.loc.x+1, this.loc.y+vertAdjust);
+  if(board.inBounds(cap) && board.locOccupied(cap)){
     if(board.getPieceAt(cap).isWhite() != this.white){
       result.push(cap);
     }
   }
-  cap = new Point(this.location.x-1, this.location.y+vertAdjust);
-  if(board.inBounds(cap) && board.locationOccupied(cap)){
+  cap = new Point(this.loc.x-1, this.loc.y+vertAdjust);
+  if(board.inBounds(cap) && board.locOccupied(cap)){
     if(board.getPieceAt(cap).isWhite() != this.white){
       result.push(cap);
     }

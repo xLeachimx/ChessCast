@@ -1,5 +1,5 @@
-function Bishop(location, isWhite, assetName, space){
-  Piece.call(this, location, isWhite, assetName, space);
+function Bishop(loc, isWhite, assetName, space){
+  Piece.call(this, loc, isWhite, assetName, space);
   this.name = "Bishop";
 }
 
@@ -8,11 +8,11 @@ Bishop.prototype.constructor = Bishop;
 
 Bishop.prototype.getValidMoveSet = function(board) {
   var result = [];
-  var currentX = this.location.x+1;
-  var currentY = this.location.y-1;
+  var currentX = this.loc.x+1;
+  var currentY = this.loc.y-1;
   var currentSpeculation = new Point(currentX, currentY);
   //moving right and up
-  while(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)){
+  while(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)){
     result.push(currentSpeculation);
     currentX += 1;
     currentY -= 1;
@@ -25,10 +25,10 @@ Bishop.prototype.getValidMoveSet = function(board) {
     }
   }
   //moving left and up
-  currentX = this.location.x-1;
-  currentY = this.location.y+1;
+  currentX = this.loc.x-1;
+  currentY = this.loc.y+1;
   currentSpeculation = new Point(currentX, currentY);
-    while(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)){
+    while(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)){
     result.push(currentSpeculation);
     currentX -= 1;
     currentY += 1;
@@ -41,10 +41,10 @@ Bishop.prototype.getValidMoveSet = function(board) {
     }
   }
   //moving left and up
-  currentX = this.location.x-1;
-  currentY = this.location.y-1;
+  currentX = this.loc.x-1;
+  currentY = this.loc.y-1;
   currentSpeculation = new Point(currentX, currentY);
-  while(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)){
+  while(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)){
     result.push(currentSpeculation);
     currentX -= 1;
     currentY -= 1;
@@ -57,10 +57,10 @@ Bishop.prototype.getValidMoveSet = function(board) {
     }
   }
   //moving right and down
-  currentX = this.location.x+1;
-  currentY = this.location.y+1;
+  currentX = this.loc.x+1;
+  currentY = this.loc.y+1;
   currentSpeculation = new Point(currentX, currentY);
-  while(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)){
+  while(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)){
     result.push(currentSpeculation);
     currentX += 1;
     currentY += 1;

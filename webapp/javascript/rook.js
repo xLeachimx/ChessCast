@@ -1,5 +1,5 @@
-function Rook(location, isWhite, assetName, space){
-  Piece.call(this, location, isWhite, assetName, space);
+function Rook(loc, isWhite, assetName, space){
+  Piece.call(this, loc, isWhite, assetName, space);
   this.name = "Rook";
 }
 
@@ -8,11 +8,11 @@ Rook.prototype.constructor = Rook;
 
 Rook.prototype.getValidMoveSet = function(board) {
   var result = [];
-  var currentX = this.x+1;
-  var currentY = this.y;
+  var currentX = this.loc.x+1;
+  var currentY = this.loc.y;
   var currentSpeculation = new Point(currentX, currentY);
   //moving right
-  while(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)){
+  while(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)){
     result.push(currentSpeculation);
     currentX += 1;
     currentSpeculation = new Point(currentX, currentY)(currentX, currentY);
@@ -24,10 +24,10 @@ Rook.prototype.getValidMoveSet = function(board) {
     }
   }
   //moving left
-  currentX = this.x-1;
-  currentY = this.y;
+  currentX = this.loc.x-1;
+  currentY = this.loc.y;
   currentSpeculation = new Point(currentX, currentY);
-  while(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)){
+  while(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)){
     result.push(currentSpeculation);
     currentX -= 1;
     currentSpeculation = new Point(currentX, currentY)(currentX, currentY);
@@ -39,10 +39,10 @@ Rook.prototype.getValidMoveSet = function(board) {
     }
   }
   //moving up
-  currentX = this.x;
-  currentY = this.y-1;
+  currentX = this.loc.x;
+  currentY = this.loc.y-1;
   currentSpeculation = new Point(currentX, currentY);
-  while(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)){
+  while(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)){
     result.push(currentSpeculation);
     currentY -= 1;
     currentSpeculation = new Point(currentX, currentY);
@@ -54,10 +54,10 @@ Rook.prototype.getValidMoveSet = function(board) {
     }
   }
   //moving down
-  currentX = this.x;
-  currentY = this.y+1;
-  currentSpeculation = new Point(currentX, currentY)(this.x,this.y+1);
-  while(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)){
+  currentX = this.loc.x;
+  currentY = this.loc.y+1;
+  currentSpeculation = new Point(currentX, currentY);
+  while(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)){
     result.push(currentSpeculation);
     currentY += 1;
     currentSpeculation = new Point(currentX, currentY);

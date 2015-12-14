@@ -1,5 +1,5 @@
-function Knight(location, isWhite, assetName, space){
-    Piece.call(this, location, isWhite, assetName, space);
+function Knight(loc, isWhite, assetName, space){
+    Piece.call(this, loc, isWhite, assetName, space);
     this.name = "Knight";
 }
 
@@ -10,10 +10,10 @@ Knight.prototype.constructor = Knight;
 Knight.prototype.getValidMoveSet = function(board) {
   var result = [];
   //move the one square on the x
-  var currentX = this.location.x+1;
-  var currentY = this.location.y+2;
+  var currentX = this.loc.x+1;
+  var currentY = this.loc.y+2;
   var currentSpeculation = new Point(currentX, currentY);
-  if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
+  if(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)) {
     result.push(currentSpeculation);
   }
   var cap = board.getPieceAt(currentSpeculation);
@@ -22,10 +22,10 @@ Knight.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.location.x-1;
-  currentY = this.location.y+2;
+  currentX = this.loc.x-1;
+  currentY = this.loc.y+2;
   currentSpeculation = new Point(currentX, currentY);
-  if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
+  if(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)) {
     result.push(currentSpeculation);
   }
   cap = board.getPieceAt(currentSpeculation);
@@ -34,10 +34,10 @@ Knight.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.location.x+1;
-  currentY = this.location.y-2;
+  currentX = this.loc.x+1;
+  currentY = this.loc.y-2;
   currentSpeculation = new Point(currentX, currentY);
-  if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
+  if(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)) {
     result.push(currentSpeculation);
   }
   cap = board.getPieceAt(currentSpeculation);
@@ -46,10 +46,10 @@ Knight.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.location.x-1;
-  currentY = this.location.y-2;
+  currentX = this.loc.x-1;
+  currentY = this.loc.y-2;
   currentSpeculation = new Point(currentX, currentY);
-  if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
+  if(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)) {
     result.push(currentSpeculation);
   }
   cap = board.getPieceAt(currentSpeculation);
@@ -59,10 +59,10 @@ Knight.prototype.getValidMoveSet = function(board) {
     }
   }
   //move the two square on the x  
-  currentX = this.location.x+2;
-  currentY = this.location.y+1;
+  currentX = this.loc.x+2;
+  currentY = this.loc.y+1;
   currentSpeculation = new Point(currentX, currentY);
-  if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
+  if(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)) {
     result.push(currentSpeculation);
   }
   cap = board.getPieceAt(currentSpeculation);
@@ -71,10 +71,10 @@ Knight.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.location.x-2;
-  currentY = this.location.y+1;
+  currentX = this.loc.x-2;
+  currentY = this.loc.y+1;
   currentSpeculation = new Point(currentX, currentY);
-  if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
+  if(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)) {
     result.push(currentSpeculation);
   }
   cap = board.getPieceAt(currentSpeculation);
@@ -83,10 +83,10 @@ Knight.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.location.x+2;
-  currentY = this.location.y-1;
+  currentX = this.loc.x+2;
+  currentY = this.loc.y-1;
   currentSpeculation = new Point(currentX, currentY);
-  if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
+  if(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)) {
     result.push(currentSpeculation);
   }
   cap = board.getPieceAt(currentSpeculation);
@@ -95,10 +95,10 @@ Knight.prototype.getValidMoveSet = function(board) {
       result.push(currentSpeculation);
     }
   }
-  currentX = this.location.x-2;
-  currentY = this.location.y-1;
+  currentX = this.loc.x-2;
+  currentY = this.loc.y-1;
   currentSpeculation = new Point(currentX, currentY);
-  if(board.inBounds(currentSpeculation) && !board.locationOccupied(currentSpeculation)) {
+  if(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)) {
     result.push(currentSpeculation);
   }
   cap = board.getPieceAt(currentSpeculation);
