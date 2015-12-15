@@ -1,5 +1,5 @@
-function Bishop(loc, isWhite, assetName, space){
-  Piece.call(this, loc, isWhite, assetName, space);
+function Bishop(loc, isWhite, asset){
+  Piece.call(this, loc, isWhite, asset);
   this.name = "Bishop";
 }
 

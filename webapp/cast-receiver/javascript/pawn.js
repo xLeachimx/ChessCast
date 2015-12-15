@@ -1,5 +1,5 @@
-function Pawn(loc, isWhite, assetName, space){
-    Piece.call(this, loc, isWhite, assetName, space);
+function Pawn(loc, isWhite, asset){
+    Piece.call(this, loc, isWhite, asset);
     this.name = "Pawn";
 }
 

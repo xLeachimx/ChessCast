@@ -1,5 +1,5 @@
-function King(loc, isWhite, assetName, space){
-  Piece.call(this, loc, isWhite, assetName, space);
+function King(loc, isWhite, asset){
+  Piece.call(this, loc, isWhite, asset);
   this.name = "King";
 }
 

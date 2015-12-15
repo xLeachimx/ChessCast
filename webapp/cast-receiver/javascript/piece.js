@@ -7,36 +7,26 @@ Point.prototype.equal = function(to) {
   return ((this.x === to.x) && (this.y === to.y));
 };
 
-var Piece = function(loc, white, assetName, space) {
+var Piece = function(loc, white, asset) {
   this.loc = loc;
   this.white = white;
   this.captured = false;
   this.moved = false;
   this.pointValue = 0;
   this.name = "piece";
-  this.asset = null;
-  if(assetName){
-    this.asset = space.group();
-    Snap.load(assetName, function(f){
-      this.asset = s.group();
-      var assetX = (loc.x * 156.5)+831;
-      var assetY = (loc.y * 162)+110;
-      this.asset.append(f);
-      this.asset.transform('s0.65t' + assetX + ',' + assetY);
-    });
-  }
-  else{
-    this.asset = null;
-  }
+  this.asset = asset;
+  var assetX = (loc.x * 156.5)+831;
+  var assetY = (loc.y * 162)+110;
+  this.asset.animate({'transform': 's0.65t' + String(assetX) + ',' + String(assetY)}, 4000);
 };
 
 Piece.prototype.moveTo = function(to) {
   this.loc = to;
   this.moved = true;
-  if(asset){
+  if(this.asset){
     var assetX = (to.x * 156.5)+831;
     var assetY = (to.y * 162)+110;
-    asset.transform('s0.65t' + String(assetX) + ',' + String(assetY));
+    this.asset.animate({'transform': 's0.65t' + String(assetX) + ',' + String(assetY)}, 2000);
   }
 };
 

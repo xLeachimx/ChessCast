@@ -1,52 +1,208 @@
+var pieces = [];
 //sets up a standard chessboard
 var Board = function(space){
   this.width = 8;
   this.height = 8;
   this.pieces = [];
+  var hostFolder = 'https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/';
   //add pieces in standard format
-  //pawns
-  for(var i = 0; i < 8; i++) {
-    this.pieces.push(new Pawn(new Point(i,0), true,
-                              'assets/svg/pieces/white.pawn.svg', space)); //init white pawns
-    this.pieces.push(new Pawn(new Point(i,6), false,
-                              'assets/svg/pieces/black.pawn.svg', space)); //init black pawns
-  }
+  //white pawns
+  Snap.load(hostFolder + 'assets/svg/pieces/white.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(0,1), true, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/white.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(1,1), true, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/white.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(2,1), true, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/white.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(3,1), true, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/white.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(4,1), true, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/white.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(5,1), true, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/white.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(6,1), true, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/white.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(7,1), true, temp));
+  });
+
+
+  //black pawns
+  Snap.load(hostFolder + 'assets/svg/pieces/black.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(0,6), false, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/black.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(1,6), false, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/black.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(2,6), false, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/black.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(3,6), false, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/black.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(4,6), false, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/black.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(5,6), false, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/black.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(6,6), false, temp));
+  });
+  Snap.load(hostFolder + 'assets/svg/pieces/black.pawn.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Pawn(new Point(7,6), false, temp));
+  });
+
+  
 
   //white rooks
-  this.pieces.push(new Rook(new Point(0,0), true, null, space));
-  this.pieces.push(new Rook(new Point(7,0), true, null, space));
+  Snap.load(hostFolder + 'assets/svg/pieces/white.rook.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Rook(new Point(0,0), true, temp));
+  });
+
+  Snap.load(hostFolder + 'assets/svg/pieces/white.rook.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Rook(new Point(7,0), true, temp));
+  });
+
   //black rooks
-  this.pieces.push(new Rook(new Point(0,7), false, null, space));
-  this.pieces.push(new Rook(new Point(7,7), false, null, space));
-  
+  Snap.load(hostFolder + 'assets/svg/pieces/black.rook.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Rook(new Point(0,7), false, temp));
+  });
+
+  Snap.load(hostFolder + 'assets/svg/pieces/black.rook.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Rook(new Point(7,7), false, temp));
+  });
+
   //white knights
-  this.pieces.push(new Knight(new Point(1,0), true, null, space));
-  this.pieces.push(new Knight(new Point(6,0), true, null, space));
+  Snap.load(hostFolder + 'assets/svg/pieces/white.knight.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Knight(new Point(1,0), true, temp));
+  });
+
+  Snap.load(hostFolder + 'assets/svg/pieces/white.knight.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Knight(new Point(6,0), true, temp));
+  });
+
   //black knights
-  this.pieces.push(new Knight(new Point(1,7), false, null, space));
-  this.pieces.push(new Knight(new Point(6,7), false, null, space));
+  Snap.load(hostFolder + 'assets/svg/pieces/black.knight.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Knight(new Point(1,7), false, temp));
+  });
+
+  Snap.load(hostFolder + 'assets/svg/pieces/black.knight.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Knight(new Point(6,7), false, temp));
+  });
   
   //white bishops
-  this.pieces.push(new Bishop(new Point(2,0), true, null, space));
-  this.pieces.push(new Bishop(new Point(5,0), true, null, space));
+  Snap.load(hostFolder + 'assets/svg/pieces/white.bishop.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Bishop(new Point(2,0), true, temp));
+  });
+
+  Snap.load(hostFolder + 'assets/svg/pieces/white.bishop.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Bishop(new Point(5,0), true, temp));
+  });
+
   //black bishops
-  this.pieces.push(new Bishop(new Point(2,7), false, null, space));
-  this.pieces.push(new Bishop(new Point(5,7), false, null, space));
+  Snap.load(hostFolder + 'assets/svg/pieces/black.bishop.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Bishop(new Point(2,7), false, temp));
+  });
+
+  Snap.load(hostFolder + 'assets/svg/pieces/black.bishop.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Bishop(new Point(5,7), false, temp));
+  });
   
-  //White Queen
-  this.pieces.push(new Queen(new Point(3,0), true, null, space));
-  //Black Queen
-  this.pieces.push(new Queen(new Point(3,7), false, null, space));
+  //white queen
+  Snap.load(hostFolder + 'assets/svg/pieces/white.queen.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Queen(new Point(3,0), true, temp));
+  });
+
+  //black queen
+  Snap.load(hostFolder + 'assets/svg/pieces/black.queen.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Queen(new Point(3,7), false, temp));
+  });
   
-  //White King
-  this.pieces.push(new King(new Point(4,0), true, null, space));
-  //Black King
-  this.pieces.push(new King(new Point(4,7), false, null, space));
+  //white king
+  Snap.load(hostFolder + 'assets/svg/pieces/white.king.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Queen(new Point(4,0), true, temp));
+  });
+
+  //black king
+  Snap.load(hostFolder + 'assets/svg/pieces/black.king.svg', function(f){
+    var temp = space.group();
+    temp.append(f);
+    pieces.push(new Queen(new Point(4,7), false, temp));
+  });
 };
 
 Board.prototype.occupiedSpace = function(loc){
-  for(var i = 0;i < this.pieces.length;i++){
-    if(pieces[i].location.equal(loc)){
+  for(var i = 0;i < pieces.length;i++){
+    if(this.pieces[i].location.equal(loc)){
       return true;
     }
   }
@@ -55,8 +211,8 @@ Board.prototype.occupiedSpace = function(loc){
 
 Board.prototype.getPieceAt = function(loc){
   for(var i = 0;i < this.pieces.length;i++){
-    if(pieces[i].location.equal(loc)){
-      return pieces[i];
+    if(this.pieces[i].location.equal(loc)){
+      return this.pieces[i];
     }
   }
   return null;
@@ -79,16 +235,16 @@ Board.prototype.canBeMovedTo = function(from, to){
 //check of the white king
 Board.prototype.check = function(white){
   var king = null;
-  for(var i = 0;i < pieces.length;i++){
-    if(pieces[i].isWhite() === white && pieces[i].designation === "King"){
-      king = pieces[i];
+  for(var i = 0;i < this.pieces.length;i++){
+    if(this.pieces[i].isWhite() === white && this.pieces[i].designation === "King"){
+      king = this.pieces[i];
       break;
     }
   }
   if(king){
-    for(var i = 0;i < pieces.length;i++){
-      if(pieces[i].isWhite() !== white && !pieces.captured){
-        var moveSet = pieces[i].getValidMoveSet(this);
+    for(var i = 0;i < this.pieces.length;i++){
+      if(this.pieces[i].isWhite() !== white && !this.pieces.captured){
+        var moveSet = this.pieces[i].getValidMoveSet(this);
         for(var j = 0;j < moveSet.length;j++){
           if(moveSet[j].equal(king.location)){
             return true;
