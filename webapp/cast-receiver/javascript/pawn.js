@@ -13,12 +13,12 @@ Pawn.prototype.getValidMoveSet = function(board) {
     vertAdjust = 1;
   }
   var possible = new Point(this.loc.x,this.loc.y+vertAdjust);
-  if (board.inBounds(currentSpeculation) && !board.locOccupied(possible)){
+  if (board.inBounds(possible) && !board.locOccupied(possible)){
     result.push(possible);
   }
   if(result.length > 0 && !this.moved){
     possible = new Point(this.loc.x,this.loc.y+(2*vertAdjust));
-    if(board.inBounds(currentSpeculation) && !board.locOccupied(possible)){
+    if(board.inBounds(possible) && !board.locOccupied(possible)){
       result.push(possible);
     }
   }

@@ -144,12 +144,12 @@ Pawn.prototype.getValidMoveSet = function(board) {
     vertAdjust = 1;
   }
   var possible = new Point(this.loc.x,this.loc.y+vertAdjust);
-  if (board.inBounds(currentSpeculation) && !board.locOccupied(possible)){
+  if (board.inBounds(possible) && !board.locOccupied(possible)){
     result.push(possible);
   }
   if(result.length > 0 && !this.moved){
     possible = new Point(this.loc.x,this.loc.y+(2*vertAdjust));
-    if(board.inBounds(currentSpeculation) && !board.locOccupied(possible)){
+    if(board.inBounds(possible) && !board.locOccupied(possible)){
       result.push(possible);
     }
   }
@@ -810,9 +810,9 @@ var Board = function(space){
   });
 };
 
-Board.prototype.occupiedSpace = function(loc){
+Board.prototype.locOccupied = function(loc){
   for(var i = 0;i < pieces.length;i++){
-    if(this.pieces[i].location.equal(loc)){
+    if(this.pieces[i].loc.equal(loc)){
       return true;
     }
   }
@@ -821,7 +821,7 @@ Board.prototype.occupiedSpace = function(loc){
 
 Board.prototype.getPieceAt = function(loc){
   for(var i = 0;i < this.pieces.length;i++){
-    if(this.pieces[i].location.equal(loc)){
+    if(this.pieces[i].loc.equal(loc)){
       return this.pieces[i];
     }
   }
@@ -856,7 +856,7 @@ Board.prototype.check = function(white){
       if(this.pieces[i].isWhite() !== white && !this.pieces.captured){
         var moveSet = this.pieces[i].getValidMoveSet(this);
         for(var j = 0;j < moveSet.length;j++){
-          if(moveSet[j].equal(king.location)){
+          if(moveSet[j].equal(king.loc)){
             return true;
           }
         }
@@ -870,7 +870,7 @@ Board.prototype.check = function(white){
 Board.prototype.filterMoveList = function(piece){
   var color = piece.isWhite();
   var moveSet = pieces.getValidMoveSet(this);
-  var origin = new Point(piece.location.x, piece.location.y);
+  var origin = new Point(piece.loc.x, piece.loc.y);
   var filteredMoveSet = [];
   for(var i = 0;i < moveSet.length;i++){
     piece.moveTo(moveSet[i]);
