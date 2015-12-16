@@ -54,8 +54,7 @@ Selector.prototype.select = function(){
     this.piece = this.board.getPieceAt(this.loc);
   }
   else{
-    var possibles = this.piece.getValidMoveSet(this.board);
-    //this.board.filterMoveList(this.piece);
+    var possibles = this.board.filterMoveList(this.piece);
     for(var i = 0;i < possibles.length;i++){
       if(possibles[i].equal(this.loc)){
         var cap = this.board.getPieceAt(this.loc);
