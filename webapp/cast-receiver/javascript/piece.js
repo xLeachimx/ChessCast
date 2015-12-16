@@ -27,8 +27,8 @@ Piece.prototype.moveTo = function(to) {
   this.loc = to;
   this.moved = true;
   if(this.asset){
-     var boardPoint = this.loc.toBoardSpace();
-  this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 1000);
+    var boardPoint = this.loc.toBoardSpace();
+    this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 1000);
   }
 };
 
