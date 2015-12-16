@@ -96,6 +96,33 @@ It is useful for learning the basic concepts of the system.
       var gameBoard = new Board(s);
       gameBoard.pieces = pieces;
 
+      //selector movement functions
+      $(document).keypress(function(event){
+        console.log("Event!");
+        console.log(event.which);
+        //up
+        if(event.which == 119){
+          gameBoard.selector.moveUp();
+        }
+        //down
+        else if(event.which == 115){
+          gameBoard.selector.moveDown();
+        }
+        //left
+        else if(event.which == 97){
+          gameBoard.selector.moveLeft();
+        }
+        //right
+        else if(event.which == 100){
+          gameBoard.selector.moveRight();
+        }
+        //enter
+        else if(event.which == 13){
+          gameBoard.selector.select();
+          console.log(gameBoard.selector.piece);
+        }
+      });
+
       function generateCheck(){
         gameBoard.selector.moveTo(new Point(2,1));
         gameBoard.selector.select();
