@@ -27,8 +27,8 @@ Piece.prototype.moveTo = function(to) {
   this.loc = to;
   this.moved = true;
   if(this.asset){
-     var boardPoint = this.loc.toBoardSpace();
-  this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 1000);
+    var boardPoint = this.loc.toBoardSpace();
+    this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 1000);
   }
 };
 
@@ -613,6 +613,7 @@ King.prototype.getValidMoveSet = function(board) {
 var pieces = [];
 var Selector = function(board, loc, space){
   this.loc = loc;
+  this.piece = null;
   this.board = board;
   this.asset = space.group();
   var temp = space.rect(-1,-1,156.5,162,5);
@@ -657,6 +658,23 @@ Selector.prototype.moveDown = function(){
   var temp = new Point(this.loc.x,this.loc.y+1);
   if(this.board.inBounds(temp)){
     this.moveTo(temp);
+  }
+};
+
+Selector.prototype.select = function(){
+  if(this.piece === null){
+    this.piece = this.board.getPieceAt(this.loc);
+  }
+  else{
+    var possibles = this.board.filterMoveList(this.piece);
+    for(var i = 0;i < possibles.length;i++){
+      if(possibles[i].equal(this.loc)){
+        console.log(possibles[i]);
+        console.log(this.loc);
+        this.piece.moveTo(this.loc);
+      }
+    }
+    this.piece = null;
   }
 };
 
@@ -898,17 +916,18 @@ Board.prototype.canBeMovedTo = function(from, to){
 Board.prototype.check = function(white){
   var king = null;
   for(var i = 0;i < this.pieces.length;i++){
-    if(this.pieces[i].isWhite() === white && this.pieces[i].designation === "King"){
+    if(this.pieces[i].isWhite() === white && this.pieces[i].name === "King"){
       king = this.pieces[i];
       break;
     }
   }
+  //console.log(king);
   if(king){
-    for(var i = 0;i < this.pieces.length;i++){
-      if(this.pieces[i].isWhite() !== white && !this.pieces.captured){
-        var moveSet = this.pieces[i].getValidMoveSet(this);
-        for(var j = 0;j < moveSet.length;j++){
-          if(moveSet[j].equal(king.loc)){
+    for(var j = 0;j < this.pieces.length;i++){
+      if(this.pieces[j].isWhite() !== white && !this.pieces[j].captured){
+        var moveSet = this.pieces[j].getValidMoveSet(this);
+        for(var k = 0;k < moveSet.length;k++){
+          if(moveSet[k].equal(king.loc)){
             return true;
           }
         }
@@ -921,11 +940,11 @@ Board.prototype.check = function(white){
 //filters out all moves that land the (friendly)king in check
 Board.prototype.filterMoveList = function(piece){
   var color = piece.isWhite();
-  var moveSet = pieces.getValidMoveSet(this);
+  var moveSet = piece.getValidMoveSet(this);
   var origin = new Point(piece.loc.x, piece.loc.y);
   var filteredMoveSet = [];
   for(var i = 0;i < moveSet.length;i++){
-    piece.moveTo(moveSet[i]);
+    piece.loc = moveSet[i];
     var cap = this.getPieceAt(moveSet[i]);
     if(cap){
       cap.captured = true;
@@ -937,6 +956,7 @@ Board.prototype.filterMoveList = function(piece){
       cap.captured = false;
     }
   }
+  piece.loc = origin;
   return filteredMoveSet;
 };
 

@@ -93,8 +93,28 @@ It is useful for learning the basic concepts of the system.
         board.append(f);
       });
 
-      var boardB = new Board(s);
-      boardB.pieces = pieces;
+      var gameBoard = new Board(s);
+      gameBoard.pieces = pieces;
+
+      function generateCheck(){
+        gameBoard.selector.moveTo(new Point(2,1));
+        gameBoard.selector.select();
+        gameBoard.selector.moveDown();
+        gameBoard.selector.select();
+        gameBoard.selector.moveTo(new Point(3,6));        
+        gameBoard.selector.select();
+        gameBoard.selector.moveUp();
+        gameBoard.selector.select();
+        gameBoard.selector.moveTo(new Point(0,1));
+        gameBoard.selector.select();
+        gameBoard.selector.moveDown();
+        gameBoard.selector.select();
+        gameBoard.selector.moveTo(new Point(4,7));
+        gameBoard.selector.select();
+        gameBoard.selector.moveTo(new Point(0,3));
+        gameBoard.selector.select();
+        console.log("In check:", gameBoard.check(true));
+      }
 
       //Graveyard piece banks
       var blackBank = s.group();
