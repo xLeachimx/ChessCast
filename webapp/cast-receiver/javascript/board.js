@@ -1,9 +1,59 @@
 var pieces = [];
+var Selector = function(board, loc, space){
+  this.loc = loc;
+  this.board = board;
+  this.asset = space.group();
+  var temp = space.rect(-1,-1,156.5,162,5);
+  temp.attr({
+    'fill-opacity': 0,
+    'stroke-width': 10,
+    'stroke': 'green'
+  });
+  this.asset.append(temp);
+  var boardPoint = this.loc.toBoardSpace();
+  this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 4000);
+};
+
+Selector.prototype.moveTo = function(loc){
+  this.loc = loc;
+  var boardPoint = this.loc.toBoardSpace();
+  this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 1000);
+};
+
+Selector.prototype.moveLeft = function(){
+  var temp = new Point(this.loc.x-1,this.loc.y);
+  if(this.board.inBounds(temp)){
+    this.moveTo(temp);
+  }
+};
+
+Selector.prototype.moveRight = function(){
+  var temp = new Point(this.loc.x+1,this.loc.y);
+  if(this.board.inBounds(temp)){
+    this.moveTo(temp);
+  }
+};
+
+Selector.prototype.moveUp = function(){
+  var temp = new Point(this.loc.x,this.loc.y-1);
+  if(this.board.inBounds(temp)){
+    this.moveTo(temp);
+  }
+};
+
+Selector.prototype.moveDown = function(){
+  var temp = new Point(this.loc.x,this.loc.y+1);
+  if(this.board.inBounds(temp)){
+    this.moveTo(temp);
+  }
+};
+
 //sets up a standard chessboard
 var Board = function(space){
   this.width = 8;
   this.height = 8;
   this.pieces = [];
+  this.selector = new Selector(this, new Point(3,1), space);
   var hostFolder = 'https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/';
   //add pieces in standard format
   //white pawns
@@ -280,10 +330,10 @@ Board.prototype.filterMoveList = function(piece){
 
 
 Board.prototype.inBounds = function(loc){
-  if(loc.x < 0 || loc.x > this.width){
+  if(loc.x < 0 || loc.x >= this.width){
     return false;
   }
-  if(loc.y < 0 || loc.y > this.height){
+  if(loc.y < 0 || loc.y >= this.height){
     return false;
   }
   return true;

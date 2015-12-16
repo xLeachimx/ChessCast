@@ -7,6 +7,10 @@ Point.prototype.equal = function(to) {
   return ((this.x === to.x) && (this.y === to.y));
 };
 
+Point.prototype.toBoardSpace = function(){
+  return {x: (this.x*156.5) + 831, y: (this.y*162) + 110};
+};
+
 var Piece = function(loc, white, asset) {
   this.loc = loc;
   this.white = white;
@@ -15,18 +19,16 @@ var Piece = function(loc, white, asset) {
   this.pointValue = 0;
   this.name = "piece";
   this.asset = asset;
-  var assetX = (loc.x * 156.5)+831;
-  var assetY = (loc.y * 162)+110;
-  this.asset.animate({'transform': 's0.65t' + String(assetX) + ',' + String(assetY)}, 4000);
+  var boardPoint = this.loc.toBoardSpace();
+  this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 4000);
 };
 
 Piece.prototype.moveTo = function(to) {
   this.loc = to;
   this.moved = true;
   if(this.asset){
-    var assetX = (to.x * 156.5)+831;
-    var assetY = (to.y * 162)+110;
-    this.asset.animate({'transform': 's0.65t' + String(assetX) + ',' + String(assetY)}, 2000);
+     var boardPoint = this.loc.toBoardSpace();
+  this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 1000);
   }
 };
 
