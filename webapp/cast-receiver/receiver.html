@@ -124,11 +124,11 @@ It is useful for learning the basic concepts of the system.
       });
 
       function generateCheck(){
-        gameBoard.selector.moveTo(new Point(2,1));
+        gameBoard.selector.moveTo(new Point(5,1));
         gameBoard.selector.select();
         gameBoard.selector.moveDown();
         gameBoard.selector.select();
-        gameBoard.selector.moveTo(new Point(3,6));        
+        gameBoard.selector.moveTo(new Point(4,6));        
         gameBoard.selector.select();
         gameBoard.selector.moveUp();
         gameBoard.selector.select();
@@ -136,9 +136,9 @@ It is useful for learning the basic concepts of the system.
         gameBoard.selector.select();
         gameBoard.selector.moveDown();
         gameBoard.selector.select();
-        gameBoard.selector.moveTo(new Point(4,7));
+        gameBoard.selector.moveTo(new Point(3,7));
         gameBoard.selector.select();
-        gameBoard.selector.moveTo(new Point(0,3));
+        gameBoard.selector.moveTo(new Point(7,3));
         gameBoard.selector.select();
         console.log("In check:", gameBoard.check(true));
       }

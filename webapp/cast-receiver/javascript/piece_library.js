@@ -688,11 +688,10 @@ Selector.prototype.select = function(){
 };
 
 //graveyards
-var Graveyard = function(board, startSpace, rows, columns){
+var Graveyard = function(board, startSpace, columns){
   this.board = board;
   this.startSpace = new Point(startSpace.x, startSpace.y);
   this.nextSpace = new Point(0,0);
-  this.rows = rows;
   this.columns = columns;
   this.units = 0;
 };
@@ -716,8 +715,8 @@ var Board = function(space){
   this.height = 8;
   this.pieces = [];
   this.selector = new Selector(this, new Point(3,1), space);
-  this.whiteGrave = new Graveyard(this, new Point(9,3), 3, 4);
-  this.blackGrave = new Graveyard(this, new Point(-5,3), 3, 4);
+  this.whiteGrave = new Graveyard(this, new Point(9,3), 4);
+  this.blackGrave = new Graveyard(this, new Point(-5,3), 4);
   var hostFolder = 'https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/';
   //add pieces in standard format
   //white pawns
@@ -958,9 +957,11 @@ Board.prototype.check = function(white){
   }
   //console.log(king);
   if(king){
-    for(var j = 0;j < this.pieces.length;i++){
+    for(var j = 0;j < this.pieces.length;j++){
+      console.log(pieces[j]);
       if(this.pieces[j].isWhite() !== white && !this.pieces[j].captured){
         var moveSet = this.pieces[j].getValidMoveSet(this);
+        console.log(moveSet);
         for(var k = 0;k < moveSet.length;k++){
           if(moveSet[k].equal(king.loc)){
             return true;

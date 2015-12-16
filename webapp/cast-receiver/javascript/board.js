@@ -345,9 +345,11 @@ Board.prototype.check = function(white){
   }
   //console.log(king);
   if(king){
-    for(var j = 0;j < this.pieces.length;i++){
+    for(var j = 0;j < this.pieces.length;j++){
+      console.log(pieces[j]);
       if(this.pieces[j].isWhite() !== white && !this.pieces[j].captured){
         var moveSet = this.pieces[j].getValidMoveSet(this);
+        console.log(moveSet);
         for(var k = 0;k < moveSet.length;k++){
           if(moveSet[k].equal(king.loc)){
             return true;
