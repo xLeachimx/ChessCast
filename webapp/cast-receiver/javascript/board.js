@@ -54,7 +54,8 @@ Selector.prototype.select = function(){
     this.piece = this.board.getPieceAt(this.loc);
   }
   else{
-    var possibles = this.board.filterMoveList(this.piece);
+    var possibles = this.piece.getValidMoveSet();
+    //this.board.filterMoveList(this.piece);
     for(var i = 0;i < possibles.length;i++){
       if(possibles[i].equal(this.loc)){
         this.piece.moveTo(this.loc);
@@ -255,14 +256,14 @@ var Board = function(space){
   Snap.load(hostFolder + 'assets/svg/pieces/white.king.svg', function(f){
     var temp = space.group();
     temp.append(f);
-    pieces.push(new Queen(new Point(4,0), true, temp));
+    pieces.push(new King(new Point(4,0), true, temp));
   });
 
   //black king
   Snap.load(hostFolder + 'assets/svg/pieces/black.king.svg', function(f){
     var temp = space.group();
     temp.append(f);
-    pieces.push(new Queen(new Point(4,7), false, temp));
+    pieces.push(new King(new Point(4,7), false, temp));
   });
 };
 
@@ -302,6 +303,7 @@ Board.prototype.canBeMovedTo = function(from, to){
 Board.prototype.check = function(white){
   var king = null;
   for(var i = 0;i < this.pieces.length;i++){
+    console.log(this.pieces[i].name);
     if(this.pieces[i].isWhite() === white && this.pieces[i].name === "King"){
       king = this.pieces[i];
       break;
@@ -325,16 +327,18 @@ Board.prototype.check = function(white){
 
 //filters out all moves that land the (friendly)king in check
 Board.prototype.filterMoveList = function(piece){
+  console.log('Filetering');
   var color = piece.isWhite();
   var moveSet = piece.getValidMoveSet(this);
   var origin = new Point(piece.loc.x, piece.loc.y);
   var filteredMoveSet = [];
   for(var i = 0;i < moveSet.length;i++){
-    piece.loc = moveSet[i];
+    console.log('i:',i);
     var cap = this.getPieceAt(moveSet[i]);
     if(cap){
       cap.captured = true;
     }
+    piece.loc = moveSet[i];
     if(!this.check(color)){
       filteredMoveSet.push(moveSet[i]);
     }
@@ -343,6 +347,7 @@ Board.prototype.filterMoveList = function(piece){
     }
   }
   piece.loc = origin;
+  console.log('Done filtering');
   return filteredMoveSet;
 };
 
