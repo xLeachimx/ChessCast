@@ -727,7 +727,7 @@ var Board = function(space){
   this.selector = new Selector(this, new Point(3,1), space);
   this.whiteGrave = new Graveyard(this, new Point(9,3), 4);
   this.blackGrave = new Graveyard(this, new Point(-5,3), 4);
-  var hostFolder = '';
+  var hostFolder = 'https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/';
   //add pieces in standard format
   //white pawns
   Snap.load(hostFolder + 'assets/svg/pieces/white.pawn.svg', function(f){
