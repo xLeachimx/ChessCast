@@ -20,6 +20,8 @@ var Piece = function(loc, white, asset) {
   this.name = "piece";
   this.asset = asset;
   var boardPoint = this.loc.toBoardSpace();
+  var center = (new Point(3.5,3.5)).toBoardSpace();
+  this.asset.transform('s0.65t' + center.x + ',' + center.y);
   this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 4000);
 };
 
@@ -662,8 +664,14 @@ Selector.prototype.moveDown = function(){
 };
 
 Selector.prototype.select = function(){
+  if(this.board.gameOver){
+    return;
+  }
   if(this.piece === null){
     this.piece = this.board.getPieceAt(this.loc);
+    if(this.piece !== null && this.piece.isWhite() !== this.board.whiteTurn){
+      this.piece = null;
+    }
   }
   else{
     var possibles = this.board.filterMoveList(this.piece);
@@ -680,6 +688,7 @@ Selector.prototype.select = function(){
           }
         }
         this.piece.moveTo(this.loc);
+        this.board.changeTurn();
       }
     }
     this.piece = null;
@@ -713,6 +722,8 @@ var Board = function(space){
   this.width = 8;
   this.height = 8;
   this.pieces = [];
+  this.gameOver = false;
+  this.whiteTurn = true;
   this.selector = new Selector(this, new Point(3,1), space);
   this.whiteGrave = new Graveyard(this, new Point(9,3), 4);
   this.blackGrave = new Graveyard(this, new Point(-5,3), 4);
@@ -1001,6 +1012,19 @@ Board.prototype.checkmate = function(white){
     }
   }
   return true;
+};
+
+Board.prototype.changeTurn = function(){
+  this.whiteTurn = !this.whiteTurn;
+  if(this.checkmate(this.whiteTurn)){
+    this.gameOver = true;
+  }
+  if(this.whiteTurn){
+    console.log("White");
+  }
+  else{
+    console.log("Black");
+  }
 };
 
 
