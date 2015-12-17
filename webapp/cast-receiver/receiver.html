@@ -123,7 +123,7 @@ It is useful for learning the basic concepts of the system.
         }
       });
 
-      function generateCheck(){
+      function generateCheckmate(){
         gameBoard.selector.moveTo(new Point(5,1));
         gameBoard.selector.select();
         gameBoard.selector.moveDown();
@@ -132,8 +132,9 @@ It is useful for learning the basic concepts of the system.
         gameBoard.selector.select();
         gameBoard.selector.moveUp();
         gameBoard.selector.select();
-        gameBoard.selector.moveTo(new Point(0,1));
+        gameBoard.selector.moveTo(new Point(6,1));
         gameBoard.selector.select();
+        gameBoard.selector.moveDown();
         gameBoard.selector.moveDown();
         gameBoard.selector.select();
         gameBoard.selector.moveTo(new Point(3,7));
@@ -141,6 +142,7 @@ It is useful for learning the basic concepts of the system.
         gameBoard.selector.moveTo(new Point(7,3));
         gameBoard.selector.select();
         console.log("In check:", gameBoard.check(true));
+        console.log("Checkmate:", gameBoard.checkmate(true));
       }
 
       //Graveyard piece banks

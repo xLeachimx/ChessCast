@@ -948,19 +948,15 @@ Board.prototype.canBeMovedTo = function(from, to){
 Board.prototype.check = function(white){
   var king = null;
   for(var i = 0;i < this.pieces.length;i++){
-    console.log(this.pieces[i].name);
     if(this.pieces[i].isWhite() === white && this.pieces[i].name === "King"){
       king = this.pieces[i];
       break;
     }
   }
-  //console.log(king);
   if(king){
     for(var j = 0;j < this.pieces.length;j++){
-      console.log(pieces[j]);
       if(this.pieces[j].isWhite() !== white && !this.pieces[j].captured){
         var moveSet = this.pieces[j].getValidMoveSet(this);
-        console.log(moveSet);
         for(var k = 0;k < moveSet.length;k++){
           if(moveSet[k].equal(king.loc)){
             return true;
@@ -974,13 +970,11 @@ Board.prototype.check = function(white){
 
 //filters out all moves that land the (friendly)king in check
 Board.prototype.filterMoveList = function(piece){
-  console.log('Filetering');
   var color = piece.isWhite();
   var moveSet = piece.getValidMoveSet(this);
   var origin = new Point(piece.loc.x, piece.loc.y);
   var filteredMoveSet = [];
   for(var i = 0;i < moveSet.length;i++){
-    console.log('i:',i);
     var cap = this.getPieceAt(moveSet[i]);
     if(cap){
       cap.captured = true;
@@ -994,8 +988,19 @@ Board.prototype.filterMoveList = function(piece){
     }
   }
   piece.loc = origin;
-  console.log('Done filtering');
   return filteredMoveSet;
+};
+
+Board.prototype.checkmate = function(white){
+  for(var i = 0;i < this.pieces.length;i++){
+    if(this.pieces[i].isWhite() === white){
+      var moveSet = this.filterMoveList(this.pieces[i]);
+      if(moveSet.length > 0){
+        return false;
+      }
+    }
+  }
+  return true;
 };
 
 
