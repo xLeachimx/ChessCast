@@ -75,6 +75,7 @@ Selector.prototype.select = function(){
         }
         this.piece.moveTo(this.loc);
         this.board.changeTurn();
+        break;
       }
     }
     this.piece = null;
