@@ -12,13 +12,13 @@ var Selector = function(board, loc, space){
   });
   this.asset.append(temp);
   var boardPoint = this.loc.toBoardSpace();
-  this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 4000);
+  this.asset.transform('s0.65t' + boardPoint.x + ',' + boardPoint.y);
 };
 
 Selector.prototype.moveTo = function(loc){
   this.loc = loc;
   var boardPoint = this.loc.toBoardSpace();
-  this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 1000);
+  this.asset.transform('s0.65t' + boardPoint.x + ',' + boardPoint.y);
 };
 
 Selector.prototype.moveLeft = function(){
@@ -54,14 +54,45 @@ Selector.prototype.select = function(){
     this.piece = this.board.getPieceAt(this.loc);
   }
   else{
-    var possibles = this.piece.getValidMoveSet();
-    //this.board.filterMoveList(this.piece);
+    var possibles = this.board.filterMoveList(this.piece);
     for(var i = 0;i < possibles.length;i++){
       if(possibles[i].equal(this.loc)){
+        var cap = this.board.getPieceAt(this.loc);
+        if(cap !== null){
+          //send to graveyard
+          if(cap.isWhite()){
+            this.board.whiteGrave.addPiece(cap);
+          }
+          else{
+            this.board.blackGrave.addPiece(cap);
+          }
+        }
         this.piece.moveTo(this.loc);
       }
     }
     this.piece = null;
+  }
+};
+
+//graveyards
+var Graveyard = function(board, startSpace, columns){
+  this.board = board;
+  this.startSpace = new Point(startSpace.x, startSpace.y);
+  this.nextSpace = new Point(0,0);
+  this.columns = columns;
+  this.units = 0;
+};
+
+Graveyard.prototype.addPiece = function(piece){
+  var translatedX = this.nextSpace.x + this.startSpace.x;
+  var translatedY = this.nextSpace.y + this.startSpace.y;
+  var translation = new Point(translatedX, translatedY);
+  piece.moveTo(translation);
+  piece.captured = true;
+  this.nextSpace.x += 1;
+  if(this.nextSpace.x >= this.columns){
+    this.nextSpace.y += 1;
+    this.nextSpace.x = 0;
   }
 };
 
@@ -71,6 +102,8 @@ var Board = function(space){
   this.height = 8;
   this.pieces = [];
   this.selector = new Selector(this, new Point(3,1), space);
+  this.whiteGrave = new Graveyard(this, new Point(9,3), 4);
+  this.blackGrave = new Graveyard(this, new Point(-5,3), 4);
   var hostFolder = 'https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/';
   //add pieces in standard format
   //white pawns
@@ -303,15 +336,13 @@ Board.prototype.canBeMovedTo = function(from, to){
 Board.prototype.check = function(white){
   var king = null;
   for(var i = 0;i < this.pieces.length;i++){
-    console.log(this.pieces[i].name);
     if(this.pieces[i].isWhite() === white && this.pieces[i].name === "King"){
       king = this.pieces[i];
       break;
     }
   }
-  //console.log(king);
   if(king){
-    for(var j = 0;j < this.pieces.length;i++){
+    for(var j = 0;j < this.pieces.length;j++){
       if(this.pieces[j].isWhite() !== white && !this.pieces[j].captured){
         var moveSet = this.pieces[j].getValidMoveSet(this);
         for(var k = 0;k < moveSet.length;k++){
@@ -327,13 +358,11 @@ Board.prototype.check = function(white){
 
 //filters out all moves that land the (friendly)king in check
 Board.prototype.filterMoveList = function(piece){
-  console.log('Filetering');
   var color = piece.isWhite();
   var moveSet = piece.getValidMoveSet(this);
   var origin = new Point(piece.loc.x, piece.loc.y);
   var filteredMoveSet = [];
   for(var i = 0;i < moveSet.length;i++){
-    console.log('i:',i);
     var cap = this.getPieceAt(moveSet[i]);
     if(cap){
       cap.captured = true;
@@ -347,8 +376,19 @@ Board.prototype.filterMoveList = function(piece){
     }
   }
   piece.loc = origin;
-  console.log('Done filtering');
   return filteredMoveSet;
+};
+
+Board.prototype.checkmate = function(white){
+  for(var i = 0;i < this.pieces.length;i++){
+    if(this.pieces[i].isWhite() === white){
+      var moveSet = this.filterMoveList(this.pieces[i]);
+      if(moveSet.length > 0){
+        return false;
+      }
+    }
+  }
+  return true;
 };
 
 

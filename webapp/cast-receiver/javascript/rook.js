@@ -15,7 +15,7 @@ Rook.prototype.getValidMoveSet = function(board) {
   while(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)){
     result.push(currentSpeculation);
     currentX += 1;
-    currentSpeculation = new Point(currentX, currentY)(currentX, currentY);
+    currentSpeculation = new Point(currentX, currentY);
   }
   var cap = board.getPieceAt(currentSpeculation);
   if(cap){
@@ -30,7 +30,7 @@ Rook.prototype.getValidMoveSet = function(board) {
   while(board.inBounds(currentSpeculation) && !board.locOccupied(currentSpeculation)){
     result.push(currentSpeculation);
     currentX -= 1;
-    currentSpeculation = new Point(currentX, currentY)(currentX, currentY);
+    currentSpeculation = new Point(currentX, currentY);
   }
   cap = board.getPieceAt(currentSpeculation);
   if(cap){
