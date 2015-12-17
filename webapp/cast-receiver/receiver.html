@@ -23,9 +23,10 @@ It is useful for learning the basic concepts of the system.
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"> </script>
   <script src="javascript/piece_library.js"> </script>
+  <script src="www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"> </script>
   <!-- cast-receiver folder: 0B4THzRDAkVCGd0FQTUh4S2xHaWc --> 
   <!-- assets folder: 0B4THzRDAkVCGZUw1dnZDbjJ1ZXc -->
-  <!-- <script type="text/javascript" src="https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/Snap.svg-0.4.1/dist/snap.svg-min.js"> </script> -->
+  <!-- <script type="text/javascript" src="assets/Snap.svg-0.4.1/dist/snap.svg-min.js"> </script> -->
   <!--<script type = "text/javascript" src="snapreceiver.js"> </script>-->
 
   <style> 
@@ -84,12 +85,12 @@ It is useful for learning the basic concepts of the system.
   
       // Load stand in 
       var stand = s.group();
-      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/ui/stand-only.svg", function(f) {
+      Snap.load("assets/svg/ui/stand-only.svg", function(f) {
         stand.append(f);
       } );
       var board = s.group();
       // Load board in, on top of stand
-      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/ui/board-only-full.svg", function(f) {
+      Snap.load("assets/svg/ui/board-only-full.svg", function(f) {
         board.append(f);
       });
 
@@ -98,8 +99,6 @@ It is useful for learning the basic concepts of the system.
 
       //selector movement functions
       $(document).keypress(function(event){
-        console.log("Event!");
-        console.log(event.which);
         //up
         if(event.which == 119){
           gameBoard.selector.moveUp();
@@ -119,7 +118,6 @@ It is useful for learning the basic concepts of the system.
         //enter
         else if(event.which == 13){
           gameBoard.selector.select();
-          console.log(gameBoard.selector.piece);
         }
       });
 
@@ -147,14 +145,14 @@ It is useful for learning the basic concepts of the system.
 
       //Graveyard piece banks
       var blackBank = s.group();
-      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/ui/bank.black.svg", function(f){
+      Snap.load("assets/svg/ui/bank.black.svg", function(f){
         blackBank.append(f);
         // scale to fit pieces 4x4 
         blackBank.transform('s0.55t-225,150');
       });
 
       var whiteBank = s.group();
-      Snap.load("https://googledrive.com/host/0B4THzRDAkVCGd0FQTUh4S2xHaWc/assets/svg/ui/bank.white.svg", function(f){
+      Snap.load("assets/svg/ui/bank.white.svg", function(f){
         whiteBank.append(f);
         whiteBank.transform('s0.55t2395,150');
       });

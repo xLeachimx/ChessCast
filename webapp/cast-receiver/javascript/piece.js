@@ -20,6 +20,8 @@ var Piece = function(loc, white, asset) {
   this.name = "piece";
   this.asset = asset;
   var boardPoint = this.loc.toBoardSpace();
+  var center = (new Point(3.5,3.5)).toBoardSpace();
+  this.asset.transform('s0.65t' + center.x + ',' + center.y);
   this.asset.animate({'transform': 's0.65t' + boardPoint.x + ',' + boardPoint.y}, 4000);
 };
 
